@@ -1,2 +1,3 @@
 # repair-design-project
-homework
+
+Use "Live Sass Compiler" (VSCode Extension) for compile SASS to CSS
