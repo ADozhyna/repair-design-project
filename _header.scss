@@ -36,16 +36,22 @@ main {
       text-transform: uppercase;
     }
   }
-  @media screen and (max-width: $tablet) {
-    & .top-menu {
+  @media screen and (max-width: $tablet) and (min-width: $mobile) {
+    .top-menu {
       display: none;
     }
 
-    & .button {
+    .button {
       display: none;
     }
-    & .logo {
+    .logo {
       padding: 0;
+      a {
+        font-size: 0.75em;
+      }
+    }
+    .number {
+      font-size: 0.75em;
     }
   }
 }

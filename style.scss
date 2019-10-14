@@ -11,6 +11,12 @@ $shadow: -1px 5px 20px 0px rgba(227, 184, 115, 0.51);
 $displaylink: inline-block;
 $bRadius: 2px;
 $tablet: 900px;
+$mobile: 375px;
+$paddingTop: 90px;
+$lineWidth: 55px;
+$lineHeight: 2px;
+$beforeAfterWidth: 32px;
+$grey: #8f8f8f;
 
 @font-face {
   font-family: "FuturaBookC";
@@ -36,6 +42,16 @@ $tablet: 900px;
   box-shadow: $shadow;
   border-radius: $bRadius;
 }
+%beforeAfter {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  width: $beforeAfterWidth;
+  height: $lineHeight;
+  background-color: $btncolor;
+  border: solid;
+  border-width: 0 10px;
+}
 
 .button {
   a {
@@ -53,17 +69,17 @@ $tablet: 900px;
   @include flex(space-between);
   flex-wrap: wrap;
   background-color: $bgcolor;
-  @media screen and (max-width: $tablet) {
-    & .social-link {
+  @media screen and (max-width: $tablet) and (min-width: $mobile) {
+    .social-link {
       display: none;
     }
-    & .scroll-down {
+    .scroll-down {
       display: none;
     }
-    & .slider {
+    .slider {
       width: 100%;
     }
-    & .scroll-down {
+    .scroll-down {
       display: none;
     }
   }
@@ -83,7 +99,7 @@ $tablet: 900px;
   width: 100%;
   height: 100%;
   background-color: rgba($bgcolor, $alpha);
-  z-index: 1;
+  z-index: 2;
 }
 .slider--text {
   h1 {
@@ -106,11 +122,28 @@ $tablet: 900px;
   position: relative;
   z-index: 2;
   padding: 190px 0 0 60px;
+  @media screen and (max-width: $tablet) and (min-width: $mobile) {
+    width: 90%;
+    margin: 0 auto;
+    padding: 80px 0 0 0;
+    h1 {
+      font-size: 1.4375em;
+    }
+    p {
+      font-size: 1.125em;
+      margin: 0;
+    }
+  }
 }
 .slider--buttons {
   position: relative;
   z-index: 2;
   padding: 30px 0 200px 60px;
+  @media screen and (max-width: $tablet) and (min-width: $mobile) {
+    padding: 35px 0 60px 0;
+    width: 90%;
+    margin: auto;
+  }
 }
 .slider--link {
   @extend %button;
@@ -120,6 +153,10 @@ $tablet: 900px;
   margin-right: 20px;
   &:hover {
     background-color: darken($btncolor, 15%);
+  }
+  @media screen and (max-width: $tablet) and (min-width: $mobile) {
+    width: 100%;
+    margin: 20px auto;
   }
 }
 .slider--link__selected {
@@ -133,6 +170,10 @@ $tablet: 900px;
   &:hover {
     background-color: $fontcolor;
     color: $bgcolor;
+  }
+  @media screen and (max-width: $tablet) and (min-width: $mobile) {
+    width: 100%;
+    margin: 20px auto;
   }
 }
 .social-link {
@@ -179,44 +220,48 @@ $tablet: 900px;
     }
   }
 }
+
+/*---------Start project-slider section----------*/
+
 .slider-projects {
-  padding-top: 90px;
-  @media screen and (max-width: $tablet) {
+  padding-top: $paddingTop;
+  @media screen and (max-width: $tablet) and (min-width: $mobile) {
     padding: 35px 0;
-    & .slider-projects--city {
+    .slider-projects--city {
       display: none;
     }
-    & .slider-wrapper {
+    .slider-wrapper {
       @include flex(space-between);
       flex-direction: column;
     }
-    & .slider-projects--slides {
+    .slider-projects--slides {
       float: none;
-      width: 100%;
+      width: 90%;
+      margin: 0 auto;
       order: 1;
     }
-    & .slider-projects-title {
+    .slider-projects-title {
       width: 100%;
       order: -1;
       padding-left: 0;
-      & h3 {
+      h3 {
         text-align: center;
         margin: 0;
         &::after {
           display: none;
         }
       }
-      & p {
+      p {
         text-align: center;
         padding: 35px 0;
         margin: 0;
       }
     }
-    & .slider-description {
+    .slider-description {
       order: 2;
       padding: 35px 0;
     }
-    & .slider-pagination {
+    .slider-pagination {
       display: none;
     }
   }
@@ -333,5 +378,220 @@ $tablet: 900px;
       padding-left: 20px;
       padding-right: 0;
     }
+  }
+}
+
+/*---------- Start video section----------*/
+
+.video {
+  padding: $paddingTop 0 0 0;
+  position: relative;
+  @media screen and (max-width: $tablet) and (min-width: $mobile) {
+    padding-top: 50px;
+    video {
+      width: 90%;
+    }
+    .description-video {
+      padding-top: 20px;
+      background-color: $bgcolor;
+      p {
+        width: 90%;
+        padding-top: 20px;
+        color: $fontcolor;
+      }
+    }
+
+    .contact-form {
+      width: 100%;
+      p {
+        padding-bottom: 0;
+        text-align: left;
+        margin: 0;
+      }
+      div {
+        width: 100%;
+        padding: 50px 0;
+        &:nth-child(3) {
+          order: 4;
+          padding-bottom: 0;
+        }
+      }
+      form {
+        width: 90%;
+        flex-direction: column;
+      }
+      input[type="text"] {
+        border-color: $fontcolor;
+      }
+      input[type="submit"] {
+        width: 340px;
+        position: relative;
+        bottom: -25px;
+      }
+    }
+  }
+}
+
+.video-title {
+  text-align: center;
+  h3 {
+    font-family: $yeseva;
+    font-size: 1.25em;
+    color: $fontcolor;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-align: center;
+  }
+}
+.title--icon::before,
+.title--icon::after {
+  @extend %beforeAfter;
+  margin-bottom: 20px;
+  border-color: $bgcolor;
+}
+.video-wrapper {
+  position: relative;
+  text-align: center;
+}
+.description-video {
+  padding-top: 60px;
+  background-color: $fontcolor;
+  text-align: center;
+  p {
+    font-family: $font;
+    font-size: 1.25em;
+    line-height: 180%;
+    width: 54%;
+    margin: 0 auto;
+    padding: 30px 0 50px 0;
+  }
+}
+.horizontal-line {
+  display: block;
+}
+.horizontal-line span {
+  width: $lineWidth;
+  height: $lineHeight;
+  display: inline-block;
+  background-color: $btncolor;
+}
+.contact-form {
+  p {
+    font-size: 1em;
+    padding: 40px 0 60px 0;
+  }
+  form {
+    @include flex(space-between);
+    flex-wrap: wrap;
+    align-items: flex-end;
+    width: 53.4%;
+    margin: 0 auto;
+  }
+  div {
+    width: 30%;
+    p {
+      font-family: $font;
+      margin: 0;
+      width: 100%;
+      line-height: 130%;
+      &:nth-child(1),
+      &:nth-child(3) {
+        font-size: 0.9375em;
+        color: $grey;
+        padding: 0;
+        text-align: left;
+      }
+      &:nth-child(2),
+      &:nth-child(4) {
+        padding: 0;
+        font-size: 1.125em;
+        text-align: left;
+      }
+    }
+  }
+  input[type="text"] {
+    width: 100%;
+    border: none;
+    border-bottom: 1.5px solid;
+    border-color: rgba(54, 54, 54, 0.3);
+    background-color: transparent;
+  }
+  input[type="submit"] {
+    width: 200px;
+    @extend %button;
+    border: none;
+    padding: 20px 0;
+  }
+}
+.column {
+  background-color: $fontcolor;
+  padding-top: $paddingTop;
+  @media screen and (max-width: $tablet) and (min-width: $mobile) {
+    .column-box {
+      flex-direction: column;
+      align-items: center;
+    }
+    .column--description {
+      margin: 0;
+    }
+  }
+}
+.column-title {
+  text-align: center;
+  h3 {
+    padding-bottom: 20px;
+    font-family: $yeseva;
+    font-size: 1.25em;
+    font-weight: normal;
+    margin: 0;
+  }
+  .title--icon::before,
+  .title--icon::after {
+    border-color: $fontcolor;
+  }
+}
+
+.column-box {
+  @include flex(space-around);
+  align-items: center;
+  flex-wrap: wrap;
+  width: 85.83%;
+  margin: 0 auto;
+  padding-top: 30px;
+  img {
+    width: 100%;
+  }
+}
+.column--price {
+  @extend %button;
+  position: relative;
+  bottom: -27px;
+  width: 69%;
+  font-family: $yeseva;
+  font-size: 1.125em;
+  text-align: center;
+}
+.column--description {
+  width: 84.18%;
+  margin: 0 auto;
+  background-color: $fontcolor;
+  position: relative;
+  bottom: 140px;
+  box-shadow: 6px 7px 14px 0px rgba(0, 0, 0, 0.22);
+  h4 {
+    font-family: $yeseva;
+    font-size: 1.125em;
+    font-weight: normal;
+    padding: 25px 0 20px 35px;
+    margin: 0;
+  }
+  ul {
+    font-family: $font;
+    font-size: 0.9375em;
+    color: $grey;
+    line-height: 180%;
+    margin: 0;
+    padding-left: 45px;
+    //padding-bottom: 35px;
   }
 }
